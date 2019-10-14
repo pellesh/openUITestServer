@@ -20,9 +20,9 @@ class TranslateService {
             throw err;
         });
         if (result.length) {
-            let line = result.split(os.EOL).filter(i => i.split('=')[0].trim() === word.trim());
+            let line = result.split(os.EOL).filter(i => i.split('=').length ? i.split('=')[0].trim() === word.trim() : false);
             if(!line.length){
-                line = result.split(os.EOL).filter(i => i.split('=')[1].trim() === word.trim());
+                line = result.split(os.EOL).filter(i => i.split('=').length ? i.split('=')[1].trim() === word.trim() : false);
                 return line.length ? line[0].split('=')[0] : "";
             }else{
                 return line.length ? line[0].split('=')[1] : "";
